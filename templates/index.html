@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PUT YOUR TASKS HERE</h1>
+        </div>
+
+        <div class="add-todo-section">
+            <input 
+                type="text" 
+                id="todoInput" 
+                placeholder="todo" 
+                autocomplete="off"
+            >
+            <button id="addBtn" onclick="addTodo()">
+                <span>Add Task</span>
+            </button>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div id="todoList" class="todo-list">
+            {% for todo in todos %}
+            <div class="todo-item {% if todo.completed %}completed{% endif %}" data-id="{{ todo.id }}" data-completed="{{ todo.completed|lower }}">
+                <div class="todo-content">
+                    <input 
+                        type="checkbox" 
+                        class="todo-checkbox" 
+                        {% if todo.completed %}checked{% endif %}
+                        onchange="toggleTodo({{ todo.id }})"
+                    >
+                    <span class="todo-text" ondblclick="editTodo({{ todo.id }}, this)">{{ todo.text }}</span>
+                    <input type="text" class="edit-input" style="display: none;">
+                </div>
+                <div class="todo-actions">
+                    <button class="edit-btn" onclick="startEdit({{ todo.id }}, this)" title="Edit">
+                        ✏️
+                    </button>
+                    <button class="delete-btn" onclick="deleteTodo({{ todo.id }})" title="Delete">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            <p id="taskCount">{{ todos|length }} task(s) remaining</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
