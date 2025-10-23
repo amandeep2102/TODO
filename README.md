@@ -8,7 +8,7 @@ The app uses **Flask** for the backend and **Jinja2** for templating.
 ## Project Structure
 
 ```
-workspace/
+TODO/
 │
 ├── static/
 │   ├── style.css
@@ -28,14 +28,13 @@ workspace/
 ### 1. Clone or download this repository
 ```bash
 git clone https://github.com/amandeep2102/TODO.git
-cd workspace
+cd TODO
 ```
 
 ### 2. Create and activate a virtual environment *(optional but recommended)*
 ```bash
-python -m venv venv
-source venv/bin/activate      
-venv\Scripts\activate    
+python -m venv Todo
+source Todo/bin/activate      
 ```
 
 ### 3. Install dependencies
@@ -60,8 +59,3 @@ http://127.0.0.1:5000/
 Open this URL in your browser to view the app.
 
 ---
-
-## Notes
-- The `todos.json` file is **automatically created** to store your to-do data.
-- Modify `static/style.css` or `static/script.js` to customize the UI or behavior.
-- Ensure that all files remain inside the same workspace directory.
